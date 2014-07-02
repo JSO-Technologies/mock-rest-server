@@ -1,11 +1,8 @@
 package com.jso.formation.mock.api;
 
-import javax.ws.rs.FormParam;
 
 public class UserLoginRequest {
-	@FormParam("username")
 	private String username;
-	@FormParam("password")
 	private String password;
 
 	public String getUsername() {

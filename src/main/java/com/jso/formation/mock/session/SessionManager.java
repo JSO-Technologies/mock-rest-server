@@ -32,6 +32,10 @@ public class SessionManager {
 		threadSession.set(null);
 	}
 	
+	public void initSession(final String userId) {
+		setSession(new Session(userId));
+	}
+	
 	public void setSession(Session session) {
 		threadSession.set(session);
 	}
