@@ -29,7 +29,7 @@ public class UserService {
 	
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/register")
+	@Path("register")
 	public Response createUser(final UserRegisterRequest request) {
 		try {
 			UserValidator.validate(request);
@@ -47,7 +47,7 @@ public class UserService {
 
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/session")
+	@Path("session")
 	public Response login(final UserLoginRequest request) {
 		try {
 			UserValidator.validate(request);
@@ -66,7 +66,7 @@ public class UserService {
 	}
 	
 	@GET
-	@Path("/session")
+	@Path("session")
 	public Response getSession() {
 		if(SessionManager.getInstance().isAuthenticated()) {
 			return Response.status(OK).build();
@@ -77,14 +77,14 @@ public class UserService {
 	}
 	
 	@DELETE
-	@Path("/session")
+	@Path("session")
 	public Response deleteSession() {
 		SessionManager.getInstance().clearSession();
 		return Response.status(GONE).build();
 	}
 	
 	@GET
-	@Path("/infos")
+	@Path("infos")
 	public Response getUserInfos() {
 		if(!SessionManager.getInstance().isAuthenticated()) {
 			return Response.status(UNAUTHORIZED).build();
