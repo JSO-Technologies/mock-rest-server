@@ -1,54 +1,59 @@
 package com.jso.formation.mock.dao;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+import java.util.stream.Stream;
+
+import org.json.JSONObject;
+
 import com.jso.formation.mock.bean.User;
 
 public class UserDAO {
-	private static final String USERS_PATH = "";
+	private static final String FILENAME = "/users.json";
+	private static final List<User> users = new ArrayList<>();
 	
-//	private static final String LASTNAME = "lastname";
-//	private static final String FIRSTNAME = "firstname";
-//	private static final String USERNAME = "username";
-//	private static final String PASSWORD = "password";
-//	private static Map<String, Map<String, String>> users = newHashMap();
-//	static {
-//		Map<String, String> user = newHashMap();
-//		user.put(USERNAME, "user1");
-//		user.put(PASSWORD, "password");
-//		user.put(FIRSTNAME, "Jimmy");
-//		user.put(LASTNAME, "Somsanith");
-//		users.put("1", user);
-//		user = newHashMap();
-//		user.put(USERNAME, "user2");
-//		user.put(PASSWORD, "password");
-//		user.put(FIRSTNAME, "Jean");
-//		user.put(LASTNAME, "Bon");
-//		users.put("2", user);
-//		user = newHashMap();
-//		user.put(USERNAME, "user3");
-//		user.put(PASSWORD, "password");
-//		user.put(FIRSTNAME, "Jessica");
-//		user.put(LASTNAME, "Cadanmonpantalon");
-//		users.put("3", user);
-//		user = newHashMap();
-//		user.put(USERNAME, "user4");
-//		user.put(PASSWORD, "password");
-//		user.put(FIRSTNAME, "Fella");
-//		user.put(LASTNAME, "Sion");
-//		users.put("4", user);
-//	}
-
-	public static void create(User user) {
-		// TODO Auto-generated method stub
+	static {
+		try {
+			final URI uri = BookDAO.class.getResource(FILENAME).toURI();
+			final Path filePath = Paths.get(uri);
 		
+			try(Stream<String> lines = Files.lines(filePath)) {
+				lines.forEach(line -> {
+					final JSONObject json = new JSONObject(line);
+					users.add(User.fromJSON(json));
+				});
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void create(final User user) {
+		user.setId(UUID.randomUUID().toString());
+		users.add(user);
 	}
 
-	public static User find(String username, String password) {
-		// TODO Auto-generated method stub
-		return null;
+	public static User find(final String username, final String password) {
+		final Optional<User> opt = users.stream()
+				.filter(user -> user.getUsername().equals(username) && user.getPassword().equals(password))
+				.findFirst();
+		return opt.orElse(null);
 	}
 
-	public static User findById(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public static User findById(final String userId) {
+		final Optional<User> opt = users.stream()
+				.filter(user -> user.getId().equals(userId))
+				.findFirst();
+		return opt.orElse(null);
 	}
 }

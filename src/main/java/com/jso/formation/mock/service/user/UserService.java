@@ -1,4 +1,4 @@
-package com.jso.formation.mock.service;
+package com.jso.formation.mock.service.user;
 
 import static com.jso.formation.mock.exception.UserExceptionTypes.USER_NOT_FOUND;
 import static javax.ws.rs.core.Response.Status.CREATED;
@@ -52,7 +52,7 @@ public class UserService {
 		try {
 			UserValidator.validate(request);
 			
-			final User user = UserDAO.find(request.getUsername(), request.getPassword());
+			final User user = UserDAO.find(request.getUsername().toLowerCase(), request.getPassword());
 			if(user == null) {
 				throw new MockException(USER_NOT_FOUND);
 			}

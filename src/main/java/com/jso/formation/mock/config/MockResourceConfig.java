@@ -5,7 +5,8 @@ import org.glassfish.jersey.server.ResourceConfig;
 
 import com.jso.formation.mock.filter.SessionManagerRequestFilter;
 import com.jso.formation.mock.filter.SessionManagerResponseFilter;
-import com.jso.formation.mock.service.UserService;
+import com.jso.formation.mock.service.book.BookService;
+import com.jso.formation.mock.service.user.UserService;
 
 
 public class MockResourceConfig extends ResourceConfig {
@@ -19,5 +20,6 @@ public class MockResourceConfig extends ResourceConfig {
     	
     	//services
     	register(UserService.class);
+    	register(BookService.class);
     }
 }

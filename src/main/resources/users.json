@@ -1,0 +1,6 @@
+{id: e135a469a9134095bf1,	username: "superman", 		firstname: "Clark",		lastname: "Kent",		password: "superman",		deleted: false}
+{id: e334ac59b582f3095bf,	username: "batman", 		firstname: "Bruce",		lastname: "Wayne",		password: "batman",			deleted: false}
+{id: 3ad93ff9c772bc095bf,	username: "green_arrow", 	firstname: "Oliver",	lastname: "Queen",		password: "green_arrow",	deleted: false}
+{id: 46d7a4b7d388a209ef1,	username: "lex", 			firstname: "Lex",		lastname: "Luthor",		password: "lex",			deleted: false}
+{id: 55ded8b2e5593b095d2,	username: "joker", 			firstname: "Jack",		lastname: "Napier",		password: "joker",			deleted: false}
+{id: 55ded8b2e5593b095d2,	username: "deathstroke", 	firstname: "Slade",		lastname: "Wilson",		password: "deathstroke",	deleted: false}

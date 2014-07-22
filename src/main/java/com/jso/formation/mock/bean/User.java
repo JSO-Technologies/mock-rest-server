@@ -1,5 +1,7 @@
 package com.jso.formation.mock.bean;
 
+import org.json.JSONObject;
+
 public class User {
 	private String id;
 	private String username;
@@ -54,5 +56,17 @@ public class User {
 
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
+	}
+
+	public static User fromJSON(JSONObject json) {
+		final User user = new User();
+		user.setId(json.optString("id"));
+		user.setUsername(json.optString("username"));
+		user.setFirstname(json.optString("firstname"));
+		user.setLastname(json.optString("lastname"));
+		user.setPassword(json.optString("password"));
+		user.setDeleted(json.optBoolean("deleted", false));
+		
+		return user;
 	}
 }

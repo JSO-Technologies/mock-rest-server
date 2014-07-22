@@ -1,4 +1,4 @@
-package com.jso.formation.mock.service;
+package com.jso.formation.mock.service.user;
 
 import static org.apache.commons.lang.StringUtils.isBlank;
 
