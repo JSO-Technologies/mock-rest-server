@@ -29,6 +29,7 @@ public class SessionManagerResponseFilter implements ContainerResponseFilter {
 		}
 		responseContext.getHeaders().add("Access-Control-Allow-Credentials", "true");
 		responseContext.getHeaders().add("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, OPTIONS");
+		responseContext.getHeaders().add("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 	}
 
 	private void addCookiesInHeader(ContainerRequestContext requestContext, ContainerResponseContext responseContext) {

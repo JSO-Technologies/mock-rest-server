@@ -58,7 +58,7 @@ public class UserService {
 			}
 			
 			SessionManager.getInstance().initSession(user.getId());
-			return Response.status(NOT_MODIFIED).build();
+			return Response.status(OK).build();
 		}
 		catch(MockException e) {
 			return e.getResponse();

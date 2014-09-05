@@ -28,8 +28,8 @@ public class BookService {
 		final Integer adaptedPage = page == null || page == 0 ? 1 : page;
 		final List<Book> books = BookDAO.getBooksOnPage(adaptedPage);
 		final Integer nbPage = BookDAO.getNB_PAGES();
-		final BookListResponse reponse = new BookListResponse(adaptedPage, nbPage, books);
+		final BookListResponse response = new BookListResponse(adaptedPage, nbPage, books);
 		
-		return Response.status(NOT_MODIFIED).entity(reponse).build();
+		return Response.status(NOT_MODIFIED).entity(response).build();
 	}
 }
