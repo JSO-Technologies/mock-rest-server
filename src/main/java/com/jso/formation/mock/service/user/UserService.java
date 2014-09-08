@@ -18,6 +18,7 @@ import javax.ws.rs.core.Response;
 
 import com.jso.formation.mock.api.UserLoginRequest;
 import com.jso.formation.mock.api.UserRegisterRequest;
+import com.jso.formation.mock.api.UserResponse;
 import com.jso.formation.mock.bean.User;
 import com.jso.formation.mock.dao.UserDAO;
 import com.jso.formation.mock.exception.MockException;
@@ -69,7 +70,10 @@ public class UserService {
 	@Path("session")
 	public Response getSession() {
 		if(SessionManager.getInstance().isAuthenticated()) {
-			return Response.status(OK).build();
+			final String userId = SessionManager.getInstance().getSession().getUserId();
+			final User user = UserDAO.findById(userId);
+
+			return Response.status(OK).entity(new UserResponse(user.getUsername())).build();
 		}
 		else {
 			return Response.status(UNAUTHORIZED).build();
@@ -80,7 +84,7 @@ public class UserService {
 	@Path("session")
 	public Response deleteSession() {
 		SessionManager.getInstance().clearSession();
-		return Response.status(GONE).build();
+		return Response.status(OK).build();
 	}
 	
 	@GET
