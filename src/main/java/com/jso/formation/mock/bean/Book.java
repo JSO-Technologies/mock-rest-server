@@ -54,7 +54,7 @@ public class Book {
 		
 		final Book book = new Book();
 		book.setId(json.optString("recordid"));
-		book.setTitle(details.optString("titre"));
+		book.setTitle(details.optString("titre_original"));
 		book.setAuthor(details.optString("auteur_personne_physique"));
 		book.setLanguage(details.optString("langue"));
 		book.setYear(Integer.parseInt(details.optString("annee_d_edition")));

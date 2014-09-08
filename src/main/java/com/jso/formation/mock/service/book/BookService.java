@@ -1,8 +1,5 @@
 package com.jso.formation.mock.service.book;
 
-import static javax.ws.rs.core.Response.Status.NOT_MODIFIED;
-import static javax.ws.rs.core.Response.Status.UNAUTHORIZED;
-
 import java.util.List;
 
 import javax.ws.rs.GET;
@@ -14,6 +11,8 @@ import com.jso.formation.mock.api.BookListResponse;
 import com.jso.formation.mock.bean.Book;
 import com.jso.formation.mock.dao.BookDAO;
 import com.jso.formation.mock.session.SessionManager;
+
+import static javax.ws.rs.core.Response.Status.*;
 
 @Path("books")
 public class BookService {
@@ -30,6 +29,6 @@ public class BookService {
 		final Integer nbPage = BookDAO.getNB_PAGES();
 		final BookListResponse response = new BookListResponse(adaptedPage, nbPage, books);
 		
-		return Response.status(NOT_MODIFIED).entity(response).build();
+		return Response.status(OK).entity(response).build();
 	}
 }
