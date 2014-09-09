@@ -67,6 +67,7 @@ public class UserService {
 	}
 	
 	@GET
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("session")
 	public Response getSession() {
 		if(SessionManager.getInstance().isAuthenticated()) {
@@ -79,23 +80,24 @@ public class UserService {
 			return Response.status(UNAUTHORIZED).build();
 		}
 	}
-	
+
 	@DELETE
 	@Path("session")
 	public Response deleteSession() {
 		SessionManager.getInstance().clearSession();
 		return Response.status(OK).build();
 	}
-	
+
 	@GET
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("infos")
 	public Response getUserInfos() {
 		if(!SessionManager.getInstance().isAuthenticated()) {
 			return Response.status(UNAUTHORIZED).build();
 		}
-		
+
 		final Session session = SessionManager.getInstance().getSession();
 		final User user = UserDAO.findById(session.getUserId());
-		return Response.status(NOT_MODIFIED).entity(user).build();
+		return Response.status(OK).entity(User.publicUserFromUser(user)).build();
 	}
 }

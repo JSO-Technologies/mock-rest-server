@@ -1,5 +1,6 @@
 package com.jso.formation.mock.bean;
 
+import com.jso.formation.mock.api.UserInfosResponse;
 import org.json.JSONObject;
 
 public class User {
@@ -68,5 +69,15 @@ public class User {
 		user.setDeleted(json.optBoolean("deleted", false));
 		
 		return user;
+	}
+
+	public static UserInfosResponse publicUserFromUser(final User user) {
+		final UserInfosResponse result = new UserInfosResponse();
+		result.setId(user.getId());
+		result.setUsername(user.getUsername());
+		result.setFirstname(user.getFirstname());
+		result.setLastname(user.getLastname());
+
+		return result;
 	}
 }
